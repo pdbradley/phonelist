@@ -1,0 +1,62 @@
+{
+  "name": "phonelist",
+  "version": "0.0.1",
+  "dependencies": {
+    "@capacitor/core": "2.4.0",
+    "@ionic/react": "^5.0.7",
+    "@ionic/react-router": "^5.0.7",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^8.0.3",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^12.12.24",
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
+    "@types/react-router": "^5.1.4",
+    "@types/react-router-dom": "^5.1.3",
+    "airtable": "^0.10.0",
+    "dotenv-flow": "^3.2.0",
+    "ionicons": "^5.0.0",
+    "phone-number-formats": "^2.2.1",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-ga": "^3.1.2",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.3",
+    "typescript": "3.8.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "prebuild": "npm run airtable",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "airtable": "node scripts/airtable.js",
+    "functions:build": "webpack --config ./functions/webpack.config.js --mode production"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@capacitor/cli": "2.4.0",
+    "@types/airtable": "^0.8.1",
+    "@types/aws-lambda": "^8.10.63",
+    "csv-parser": "^2.3.3",
+    "ts-loader": "^8.0.4",
+    "webpack-cli": "^4.0.0"
+  },
+  "description": "An Ionic project"
+}

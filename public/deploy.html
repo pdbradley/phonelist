@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>Update Phonelist</title>
+    <meta
+      name="viewport"
+      content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <style>
+      body {
+        margin: 2em;
+        font-family: sans-serif;
+        text-align: center;
+      }
+
+      button {
+        font-size: 1.5em;
+      }
+
+      p {
+        margin-top: 1.5em;
+      }
+    </style>
+    <script>
+      function deploy() {
+        const btn = document.getElementById('deploy');
+        btn.disabled = true;
+        fetch('https://api.netlify.com/build_hooks/5f619173253368f476c42b4b', {
+          method: 'POST',
+        })
+          .then((res) => {
+            if (res.ok) {
+              btn.disabled = false;
+              return 'Deploy started!';
+            } else {
+              btn.disabled = true;
+              return 'Deploy failed. Please try again.';
+            }
+          })
+          .then((message) => {
+            document.getElementById('message').innerText = message;
+          });
+      }
+    </script>
+  </head>
+
+  <body>
+    <h2>Update Phonelist</h2>
+
+    <p>Once the Airtable data has been updated, you can deploy new changes:</p>
+
+    <p>
+      <button onclick="deploy()" id="deploy">
+        Deploy Changes
+      </button>
+    </p>
+
+    <p id="message"></p>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+[build]
+  functions = "/functions/build"
+[[redirects]]
+  from = "/contacts"
+  to = "/"
+  status = 302

@@ -1,0 +1,21 @@
+.contacts-page {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.initials {
+  background-color: var(--ion-color-medium);
+  color: var(--ion-color-medium-contrast);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-details {
+  color: var(--ion-color-medium);
+  font-size: 0.8em;
+}
