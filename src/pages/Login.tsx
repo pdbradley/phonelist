@@ -7,6 +7,7 @@ import {
   IonIcon,
   IonPage,
   IonContent,
+  IonProgressBar,
 } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
 import './Login.css';
@@ -22,6 +23,7 @@ const Login: React.FC = () => {
   const history = useHistory();
   const [pin, setPin] = useState('');
   const [pinValue, setPinValue] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const [enabled, setEnabled] = useState(true);
 
@@ -63,6 +65,8 @@ const Login: React.FC = () => {
   }
 
   async function submitPin(pin: string) {
+    setLoading(true);
+
     let res = await fetch('/.netlify/functions/login', {
       method: 'POST',
       cache: 'no-cache',
@@ -72,14 +76,15 @@ const Login: React.FC = () => {
 
     const json: LoginResponse = await res.json();
 
-    if (json.error) {
-      alert(json.error);
-      setPin('');
-      setEnabled(true);
-    } else if (json.data) {
+    if (json.data) {
       addContacts(json.data);
       history.push('/contacts');
+    } else {
+      if (json.error) alert(json.error);
+      setPin('');
+      setEnabled(true);
     }
+    setLoading(false);
   }
 
   function button(digit: number) {
@@ -112,6 +117,13 @@ const Login: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
+        <div style={{ position: 'fixed', left: 0, top: 0, right: 0 }}>
+          {loading && (
+            <IonProgressBar
+              type={loading ? 'indeterminate' : 'determinate'}
+            ></IonProgressBar>
+          )}
+        </div>
         <div className="login-container">
           <div className="login-wrapper">
             <IonGrid className="login">

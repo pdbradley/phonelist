@@ -41,10 +41,6 @@ Set up the following environment variables in Netlify:
   ```sh
   PINS=1234,4321
   ```
-- `CONTACTS_BASE_NAME` -- generate a random hash to use as the filename that stores the phonelist.
-  ```sh
-  CONTACTS_BASE_NAME=some_random_hash_value
-  ```
 - `NETLIFY_BUILD_HOOK` -- URL to kick off the build process, so admins can re-deploy without writing code.
   ```sh
   NETLIFY_BUILD_HOOK=https://api.netlify.com/build_hooks/343j34jk34j3k4j3k4343

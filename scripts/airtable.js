@@ -26,12 +26,6 @@ if (!AIRTABLE_TABLE_NAME) {
   process.exit(1);
 }
 
-const { CONTACTS_BASE_NAME } = process.env;
-if (!CONTACTS_BASE_NAME) {
-  console.log('No contacts base name provided');
-  process.exit(1);
-}
-
 Airtable.configure({
   endpointUrl: 'https://api.airtable.com',
   apiKey: AIRTABLE_API_KEY,

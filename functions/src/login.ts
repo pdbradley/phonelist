@@ -1,7 +1,8 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import contacts from '../contacts.json';
+import pins from '../pins.json';
 
-const PINS = (process.env.PINS || '').split(',');
+const PINS = (pins || process.env.PINS || '').split(',');
 
 export const handler = async function (event: APIGatewayEvent) {
   let body: any = '';
@@ -24,6 +25,6 @@ export const handler = async function (event: APIGatewayEvent) {
     headers: {
       'content-type': 'application/json',
     },
-    body: JSON.stringify(PINS),
+    body: JSON.stringify(body),
   };
 };

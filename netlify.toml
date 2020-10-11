@@ -3,4 +3,8 @@
 [[redirects]]
   from = "/contacts"
   to = "/"
-  status = 302
+  status = 200
+[[redirects]]
+  from = "/deploy"
+  to = "/"
+  status = 200

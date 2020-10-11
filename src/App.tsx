@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useRef, useContext, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Contacts from './pages/Contacts';
+import Deploy from './pages/Deploy';
 import Login from './pages/Login';
 
 /* Core CSS required for Ionic components to work properly */
@@ -24,15 +25,42 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/" component={Login} exact />
-        <Route path="/contacts" component={Contacts} exact />
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+type MaybeRouter = HTMLIonRouterOutletElement | null;
+
+const RouterContext = React.createContext({ value: null as MaybeRouter });
+
+export function useRouter() {
+  const router = useContext(RouterContext);
+
+  const setRouter = (value: MaybeRouter) => {
+    router.value = value;
+  };
+
+  return [router.value, setRouter] as [
+    MaybeRouter,
+    (value: MaybeRouter) => void
+  ];
+}
+
+const App: React.FC = () => {
+  const routerRef = useRef<MaybeRouter>(null);
+  const [, setRouter] = useRouter();
+
+  useEffect(() => {
+    setRouter(routerRef.current);
+  }, [routerRef, setRouter]);
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet ref={routerRef}>
+          <Route path="/" component={Login} exact />
+          <Route path="/contacts" component={Contacts} exact />
+          <Route path="/deploy" component={Deploy} exact />
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
 export default App;
