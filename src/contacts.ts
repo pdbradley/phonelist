@@ -5,7 +5,6 @@ export interface ContactDetails {
   mobile: string;
   home: string;
   email: string;
-  hall: string;
 }
 
 export class Contact implements ContactDetails {
@@ -13,7 +12,6 @@ export class Contact implements ContactDetails {
   private _mobile = '';
   private _home = '';
   email = '';
-  hall = '';
 
   constructor(contact: Partial<ContactDetails>) {
     Object.assign(this, contact);
@@ -44,16 +42,16 @@ export class Contact implements ContactDetails {
   }
 }
 
-const contacts = [] as Contact[];
+export const allContacts = [] as Contact[];
 
 export function addContacts(conts: Contact[], dontSave?: boolean) {
-  conts.forEach((c) => contacts.push(new Contact(c)));
+  conts.forEach((c) => allContacts.push(new Contact(c)));
   if (!dontSave) saveContacts();
 }
 
 const KEY = 'contacts';
 function saveContacts() {
-  window.sessionStorage.setItem(KEY, JSON.stringify(contacts));
+  window.sessionStorage.setItem(KEY, JSON.stringify(allContacts));
 }
 
 function restoreContacts() {
@@ -67,5 +65,3 @@ function restoreContacts() {
 }
 
 restoreContacts();
-
-export default contacts;

@@ -51,15 +51,11 @@ async function getAirtable(_event, _context) {
     let home = (r.get('Home Phone') || '').replace(/\D/g, '');
     let email = r.get('Email') || '';
 
-    let hall = r.get('Hall') || '';
-    hall = hall.split(' ')[1] || '';
-
     return {
       name,
       mobile,
       home,
       email,
-      hall,
     };
   });
 

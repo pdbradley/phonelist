@@ -20,7 +20,7 @@ import {
 import React, { useState } from 'react';
 import './Contacts.css';
 import { phoneDigits, initials } from '../utils';
-import contacts, { Contact } from '../contacts';
+import { Contact } from '../contacts';
 import { chatbox, home, call, personAdd, mail } from 'ionicons/icons';
 import { Redirect } from 'react-router';
 import debounce from 'lodash.debounce';
@@ -32,15 +32,23 @@ const MAX_SEARCH_RESULTS = 7;
 
 const ADD_USER_URL = process.env.REACT_APP_AIRTABLE_ADD_USER_URL || '';
 
-const Home: React.FC = () => {
+interface ContactsProps {
+  contactData?: Contact[];
+  showAll?: boolean;
+}
+
+const Contacts: React.FC<ContactsProps> = ({
+  contactData = [],
+  showAll = false,
+}) => {
   const [router] = useRouter();
 
   const [searchValue, setSearchValue] = useState('');
 
   // either [] or contacts, depending on whether we want to show all by default
-  const [defaultContacts] = useState<Contact[]>(contacts);
+  const [defaultContacts] = useState<Contact[]>(showAll ? contactData : []);
 
-  const [contactList, setContactList] = useState<Contact[]>([]);
+  const [contactList, setContactList] = useState<Contact[]>(defaultContacts);
 
   const [contactCardOpen, setContactCardOpen] = useState(false);
 
@@ -61,7 +69,7 @@ const Home: React.FC = () => {
     getSearchStateFromResults(defaultContacts)
   );
 
-  if (!contacts.length) return <Redirect to="/" />;
+  if (!contactData.length) return <Redirect to="/" />;
 
   function showContactCard(contact: Contact) {
     setCurrentContact(contact);
@@ -87,7 +95,7 @@ const Home: React.FC = () => {
     if (search.length > 1) {
       const terms = search.split(' ');
       if (terms[0]) {
-        results = contacts
+        results = contactData
           .filter(
             (contact) =>
               terms.filter((t) => contact.name.toLowerCase().includes(t))
@@ -250,4 +258,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Contacts;

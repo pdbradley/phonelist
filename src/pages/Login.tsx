@@ -11,7 +11,7 @@ import {
 } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
 import './Login.css';
-import contacts, { addContacts, Contact } from '../contacts';
+import { allContacts, addContacts, Contact } from '../contacts';
 import { useHistory, Redirect } from 'react-router';
 
 interface LoginResponse {
@@ -47,7 +47,7 @@ const Login: React.FC = () => {
     // eslint-disable-next-line
   }, [pinValue]);
 
-  if (contacts.length) return <Redirect to="/contacts" />;
+  if (allContacts.length) return <Redirect to="/contacts" />;
 
   function clickDigit(digit: number) {
     if (!enabled) return;

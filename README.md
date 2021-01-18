@@ -13,7 +13,6 @@ Create a base with the following fields:
 - Email
 - Verified (checkbox)
 - Over 18 (Yes/No)
-- Hall (optional)
 
 The phonelist will only include entries that are marked as verified and are over 18 years of age. You can create a form for adding users to the phonelist, but you are encouraged to keep `Verified` off the form for admins to control.
 
