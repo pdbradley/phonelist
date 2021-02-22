@@ -40,7 +40,7 @@ Set up the following environment variables in Netlify:
   ```sh
   PINS=1234,4321
   ```
-- `NETLIFY_BUILD_HOOK` -- URL to kick off the build process, so admins can re-deploy without writing code.
+- `REACT_APP_BUILD_HOOK` -- URL to kick off the build process, so admins can re-deploy without writing code.
   ```sh
-  NETLIFY_BUILD_HOOK=https://api.netlify.com/build_hooks/343j34jk34j3k4j3k4343
+  REACT_APP_BUILD_HOOK=https://api.netlify.com/build_hooks/343j34jk34j3k4j3k4343
   ```
