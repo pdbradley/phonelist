@@ -1,6 +1,8 @@
 # Phonebook
 
-This app is a phone book that connects to Airtable for data. Follow the steps below to get set up:
+This app is a phone book that connects to Airtable for data and deploys on Airtable. No code needed to make this work. Just configure the site and the manage your phone list via Airtable.
+
+Follow the steps below to get set up:
 
 ## Airtable
 
